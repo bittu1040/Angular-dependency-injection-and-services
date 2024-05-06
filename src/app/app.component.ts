@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,4 +17,28 @@ export class AppComponent {
   refreshValue(){
     this.dataService.count=0
   }
+
+  myObservable= new Observable((observer)=>{
+    console.log("observer started");
+    observer.next("a");
+    observer.next("b");
+    observer.next("c");
+  });
+
+  promise1= new Promise((resolve)=>{
+    console.log("promise1 started")
+    resolve("promise1 resolved")
+  })
+
+  ngOnInit(): void {
+    this.myObservable.subscribe((value)=>{
+      console.log(value);
+    })
+
+    this.promise1.then((value)=>{
+      console.log(value)  
+    })
+  }
+
+
 }
