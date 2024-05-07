@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from './data.service';
+import { DataService, Student } from './data.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -38,7 +38,10 @@ export class AppComponent {
     this.promise1.then((value)=>{
       console.log(value)  
     })
+
+    this.dataService.getStudents().subscribe((data:Student[])=>{
+      console.log(data)
+  } )
+
   }
-
-
 }
